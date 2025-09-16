@@ -7,7 +7,6 @@ services:
     buildCommand: "npm install"
     startCommand: "npm start"
     healthCheckPath: "/"
-    # disks 应该和 envVars, name 等在同一层级
     disks:
       - name: uploads-disk
         mountPath: /app/public/uploads
