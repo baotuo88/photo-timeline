@@ -8,12 +8,12 @@ services:
     startCommand: "npm start"
     healthCheckPath: "/"
     envVars:
+      # 先暂时移除数据库环境变量，后面我们手动添加
       - key: SESSION_SECRET
         generateValue: true
       - key: NODE_ENV
         value: production
-
-  # 你的 PostgreSQL 数据库
-  - type: psql
-    name: photo-timeline-db
-    plan: free
+    disks:
+      - name: uploads-disk
+        mountPath: /app/public/uploads
+        sizeGB: 1
