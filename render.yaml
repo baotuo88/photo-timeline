@@ -1,5 +1,5 @@
 services:
-  # 只保留 Node.js 后端服务
+  # 你的 Node.js 后端服务
   - type: web
     name: photo-timeline-server
     env: node
@@ -7,13 +7,22 @@ services:
     buildCommand: "npm install"
     startCommand: "npm start"
     healthCheckPath: "/"
-    envVars:
-      # 先暂时移除数据库环境变量，后面我们手动添加
-      - key: SESSION_SECRET
-        generateValue: true
-      - key: NODE_ENV
-        value: production
+    # disks 应该和 envVars, name 等在同一层级
     disks:
       - name: uploads-disk
         mountPath: /app/public/uploads
         sizeGB: 1
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: photo-timeline-db
+          property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: NODE_ENV
+        value: production
+
+  # 你的 PostgreSQL 数据库
+  - type: psql
+    name: photo-timeline-db
+    plan: free
