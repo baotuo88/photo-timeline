@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员登录</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <form action="/login" method="post" class="auth-form">
+            <h2><i class='bx bxs-lock'></i> 管理员登录</h2>
+            <div class="form-group">
+                <input type="password" id="password" name="password" required placeholder=" ">
+                <label for="password">管理员密码</label>
+            </div>
+            <button type="submit">登 录</button>
+            <p id="error-message" class="error-message" style="display: none;"></p>
+        </form>
+    </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('error')) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = decodeURIComponent(params.get('error'));
+            errorDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

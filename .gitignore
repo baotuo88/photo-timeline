@@ -1,0 +1,7 @@
+# .gitignore 文件
+
+# 忽略所有 node_modules 文件夹
+node_modules/
+
+# 忽略所有 .env 文件，防止敏感信息泄露
+.env
